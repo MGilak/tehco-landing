@@ -1,0 +1,25 @@
+:root {
+  --blue-1: #0099cc;
+  --color-1: #303030;
+  --color-2: #7b7b7b;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+a {
+  text-decoration: none;
+  color: unset;
+}
+ul {
+  list-style-type: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
