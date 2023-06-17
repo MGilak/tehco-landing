@@ -92,6 +92,10 @@ function App() {
           </div>
         </div>
       </div>
+
+      <section className="content">
+        
+      </section>
     </>
   );
 }

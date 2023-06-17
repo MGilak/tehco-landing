@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeadset, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FaAngleDoubleDown, FaAngleDoubleLeft } from "react-icons/fa";
+import { BsInstagram, BsLinkedin, BsTwitter, BsSearch } from "react-icons/bs";
 
 const Header = () => {
-  const [hover, setHover] = useState(false);
   return (
     <div>
       <div className="wide_header">
@@ -85,22 +86,19 @@ const Header = () => {
               {/********پایان محصولات*********/}
 
               {/********خدمات*********/}
-              <li className="services">
+              <li>
                 <a href="/">
                   <span>خدمات</span>
                   <FaAngleDoubleDown />
                 </a>
                 {/*منوی خدمات*/}
                 <ul class="sub_menu">
-                  <li
-                    onMouseOver={() => setHover(true)}
-                    onMouseOut={() => setHover(false)}
-                  >
+                  <li>
                     <a href="/">
                       <span>طراحی وبسایت</span>
-                      <FaAngleDoubleLeft />
                     </a>
-                    <ul class={`sub_menu sub_menu2 ${hover && "active"}`}>
+                    <FaAngleDoubleLeft />
+                    <ul class="sub_menu sub1_menu2">
                       <li>
                         <a href="/">
                           <span>پشتیبانی وب افزار</span>
@@ -136,15 +134,15 @@ const Header = () => {
                   <li>
                     <a href="/" class="sf-with-ul">
                       <span>موبایل و اپلیکیشن</span>
-                      <FaAngleDoubleLeft />
                     </a>
-                    {/* <ul class="sub2_menu2">
+                    <FaAngleDoubleLeft />
+                    <ul class="sub_menu sub2_menu2">
                       <li>
                         <a href="/" data-title="راهکارهای اداری و سازمانی">
                           <span>راهکارهای اداری و سازمانی</span>
                         </a>
                       </li>
-                    </ul> */}
+                    </ul>
                   </li>
                   <li>
                     <a href="/">
@@ -171,6 +169,80 @@ const Header = () => {
                   <span>نمونه کار</span>
                   <FaAngleDoubleDown />
                 </a>
+                {/*منوی نمونه کار*/}
+                <ul class="sub_menu">
+                  <li>
+                    <a href="/">
+                      <span>وب سایت</span>
+                    </a>
+                    <FaAngleDoubleLeft />
+                    <ul class="sub_menu sub1_menu2">
+                      <li>
+                        <a href="/">
+                          <span>شخصی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>فروشگاهی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>سازمانی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>خدماتی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>شرکتی</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <span>موبایل اپلیکیشن</span>
+                    </a>
+                    <FaAngleDoubleLeft />
+                    <ul class="sub_menu sub2_menu2">
+                      <li>
+                        <a href="/">
+                          <span>شخصی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>سازمانی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>استارتاپی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>خدماتی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/">
+                          <span>فروشگاهی</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <span>گرافیک</span>
+                    </a>
+                  </li>
+                </ul>
               </li>
               {/********پایان نمونه کار*********/}
 
@@ -180,6 +252,19 @@ const Header = () => {
                   <span>پشتیبانی</span>
                   <FaAngleDoubleDown />
                 </a>
+                {/*منوی نمونه کار*/}
+                <ul class="sub_menu">
+                  <li>
+                    <a href="/">
+                      <span>سامانه مشتریان</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <span>پشتیبانی وب افزار</span>
+                    </a>
+                  </li>
+                </ul>
               </li>
               {/********پایان پشتیبانی*******/}
               <li>
@@ -195,9 +280,34 @@ const Header = () => {
           </nav>
 
           <div className="menu_left">
-            <div className="social_menu"></div>
+            <div className="social_menu">
+              <div className="aparat">
+                <a className="center" href="/">
+                  <BsTwitter />
+                </a>
+              </div>
 
-            <div className="search_menu"></div>
+              <div className="linkedin">
+                <a className="center" href="/">
+                  <BsLinkedin />
+                </a>
+              </div>
+
+              <div className="insta">
+                <a className="center" href="/">
+                  <BsInstagram />
+                </a>
+              </div>
+            </div>
+
+            <div className="line"></div>
+
+            <div className="search_menu">
+              <form>
+                <input type="text" placeholder="جست‌وجو..." />
+                <BsSearch />
+              </form>
+            </div>
           </div>
         </div>
       </div>
