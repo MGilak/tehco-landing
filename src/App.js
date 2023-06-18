@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi2";
-import { services } from "./data";
+import { IoIosArrowUp } from "react-icons/io";
+import { services, serviceItems } from "./data";
 
 import Header from "./components/header/Header";
 import Slider from "./components/slider/Slider";
@@ -12,6 +13,9 @@ import "./App.css";
 function App() {
   const [loadWin, setLoadWin] = useState(false);
   let [slider, setSlider] = useState(1);
+  const [serviceIndex, setServiceIndex] = useState(1);
+  const [servicesFade, setServicesFade] = useState(false);
+  const [showButton, setShowButton] = useState();
 
   const slides = [{ id: 1 }, { id: 1 }];
 
@@ -35,6 +39,41 @@ function App() {
     }
   };
 
+  const serviceHandler = (id) => {
+    setServiceIndex(id);
+    setServicesFade(true);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setServicesFade(false);
+    }, 1000);
+  }, [servicesFade]);
+
+  useEffect(() => {
+    const showBelowHeight = 500;
+
+    const scrollHandler = () => {
+      if (window.scrollY > showBelowHeight) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", scrollHandler);
+
+    return () => window.removeEventListener("scroll", scrollHandler);
+  });
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // اسلایدر
   // useEffect(() => {
   //   const intervalSlider = setInterval(() => {
   //     incHandler();
@@ -48,6 +87,7 @@ function App() {
       <header>
         <Header />
       </header>
+
       <div className="main_top">
         {slider === 0 ? (
           <div>
@@ -107,31 +147,30 @@ function App() {
         <div className="services">
           <ul>
             {services.map((item) => (
-              <li key={item.id}>
+              <li
+                className={serviceIndex === item.id && "active"}
+                key={item.id}
+                onClick={() => serviceHandler(item.id)}
+              >
                 <img src={item.img} alt="service" />
                 <p>{item.title}</p>
               </li>
             ))}
           </ul>
 
-          <div className="service_content">
+          <div className={`service_content ${servicesFade && "fade"}`}>
             <div className="service_content_info">
               <div className="title">
-                <h1>شبکه و زیرساخت</h1>
+                <h1>
+                  <span>{serviceItems[serviceIndex - 1].title1}</span>
+                  <span>{serviceItems[serviceIndex - 1].title2}</span>
+                </h1>
               </div>
 
               <div className="body">
-                <p>
-                  با لطف خداوند و همت تیم خلاق و جوان تهکو توانسته ایم تا به
-                  امروز پشتیبان تمام نیاز های مشتریان و خدمات ارائه شده به
-                  مخاطبین شرکت باشیم. با توجه به عملکرد و دستاوردهای پیشین از
-                  میزان رضایت مندی مشتریان عزیز این نوید را خواهیم داد که شرکت
-                  تهکو همچنان برروی خدمات خود پایداری داشته باشد و به مشتریان
-                  خود خدمات ارائه دهد. از این رو تهکو در طی مدت کوتاهی توانست
-                  جلب رضایت بسیاری از مشتریان را معطوف خود نماید و تواسته ایم
-                  نیازهای مشتریان را در کوتاه ترین زمان فراهم آوریم. تهکو برای
-                  خدمات خود برای مشتریان عزیز بصورت 7*24 خدمات رسانی خواهد کرد.
-                </p>
+                <p>{serviceItems[serviceIndex - 1].content1}</p>
+                <p>{serviceItems[serviceIndex - 1].content2}</p>
+                <p>{serviceItems[serviceIndex - 1].content3}</p>
               </div>
 
               <div className="button">
@@ -148,8 +187,8 @@ function App() {
               </div>
             </div>
 
-            <div className="service_content_image">
-              <img src="./images/pair-programming.jpg" alt="" />
+            <div className="service_content_image center">
+              <img src={serviceItems[serviceIndex - 1].image} alt="" />
             </div>
           </div>
         </div>
@@ -174,7 +213,12 @@ function App() {
 
       <Footer />
 
-      <div className="test"></div>
+      <div
+        onClick={scrollToTop}
+        className={`move_up center ${showButton && "active"}`}
+      >
+        <IoIosArrowUp />
+      </div>
     </>
   );
 }

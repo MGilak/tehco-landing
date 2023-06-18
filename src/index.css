@@ -10,6 +10,9 @@
   box-sizing: border-box;
   user-select: none;
 }
+body {
+  scroll-behavior: smooth;
+}
 a {
   text-decoration: none;
   color: unset;

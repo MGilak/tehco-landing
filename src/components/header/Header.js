@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeadset, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faHeadset, faL, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FaAngleDoubleDown, FaAngleDoubleLeft } from "react-icons/fa";
 import { BsInstagram, BsLinkedin, BsTwitter, BsSearch } from "react-icons/bs";
 
 const Header = () => {
+  const [menuSticky, setMenuSticky] = useState(false);
+  const [navPosition, setNavPosition] = useState();
+  const menuRef = useRef();
+  const navRef = useRef();
+
+  useEffect(() => {
+    const navEl = navRef.current;
+    const navPosition = navEl.getBoundingClientRect().top;
+    setNavPosition(navPosition);
+
+    const handleScroll = () => {
+      const MenuEl = menuRef.current;
+      const menuPosition = MenuEl.getBoundingClientRect().top;
+      const scrollTop = document.documentElement.scrollTop;
+      console.log(navPosition);
+      console.log(scrollTop);
+
+      if (menuPosition <= 0) {
+        setMenuSticky(true);
+      }
+      if (scrollTop <= navPosition) {
+        setMenuSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div>
       <div className="wide_header">
@@ -39,9 +71,12 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="menu_header center">
+      <div
+        ref={menuRef}
+        className={`menu_header center ${menuSticky && "fixed"}`}
+      >
         <div className="menu">
-          <nav>
+          <nav ref={navRef}>
             <ul className="main_menu">
               <li>
                 <a href="/">خانه</a>
@@ -285,18 +320,21 @@ const Header = () => {
                 <a className="center" href="/">
                   <BsTwitter />
                 </a>
+                <span>توییتر</span>
               </div>
 
               <div className="linkedin">
                 <a className="center" href="/">
                   <BsLinkedin />
                 </a>
+                <span>لینکدین</span>
               </div>
 
               <div className="insta">
                 <a className="center" href="/">
                   <BsInstagram />
                 </a>
+                <span>اینستاگرام</span>
               </div>
             </div>
 

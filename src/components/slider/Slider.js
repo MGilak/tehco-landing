@@ -12,11 +12,12 @@ const Slider = () => {
   return (
     <div>
       <Swiper
+        speed={1500}
         navigation={true}
         pagination={false}
         slidesPerView={7}
         centeredSlides={true}
-        spaceBetween={20}
+        spaceBetween={26}
         loop={true}
         autoplay={{
           delay: 2000,
@@ -24,7 +25,7 @@ const Slider = () => {
         }}
         mousewheel={true}
         keyboard={true}
-        modules={[Autoplay, Navigation, Pagination, Mousewheel, Keyboard]}
+        modules={[Navigation, Autoplay, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
         <div className="slides">

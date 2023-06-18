@@ -1,3 +1,10 @@
+header {
+  position: absolute;
+  top: 7%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
 /* First Section */
 .main_top {
   position: relative;
@@ -168,7 +175,15 @@
 }
 .services {
   padding: 0 40px;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .services ul {
   display: flex;
@@ -180,6 +195,31 @@
   font-weight: 600;
   color: #444444;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.services ul li.active::before {
+  content: "";
+  background-color: #0099cc;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  bottom: -23px;
+  left: 0;
+  opacity: 1;
+  animation-name: lineAppear;
+  animation-duration: 0.3s;
+}
+@keyframes lineAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .services ul li img {
   max-width: 90%;
@@ -189,6 +229,15 @@
   gap: 30px;
   padding: 100px 0;
   align-items: center;
+  justify-content: space-between;
+}
+.service_content.fade {
+  animation-name: fade;
+  animation-duration: 0.9s;
+}
+.service_content_image,
+.service_content_info {
+  max-width: 50%;
 }
 .service_content_info .title {
   font-size: 30px;
@@ -202,6 +251,8 @@
 }
 .service_content_info .button {
   margin-top: 50px;
+}
+.service_content_image {
 }
 .main_button {
   border-radius: 5px;
@@ -343,10 +394,36 @@
 
 /********* slider *********/
 .slider {
-  margin: 70px 40px !important;
+  margin: 100px 0 !important;
 }
 
-/* *********************** */
-.test {
-  height: 1000px;
+/********* move up icon *********/
+.move_up {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 3rem;
+  height: 3rem;
+  background-color: #0099cc;
+  z-index: 999;
+  cursor: pointer;
+  border-radius: 5px;
+  display: none;
+}
+.move_up svg {
+  color: #fff;
+  font-size: 20px;
+}
+.move_up.active {
+  display: flex;
+  animation-name: showMoveUp;
+  animation-duration: 0.5s;
+}
+@keyframes showMoveUp {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
