@@ -1,0 +1,27 @@
+.slides {
+  padding: 50px;
+  position: relative;
+}
+.slide {
+  width: 80%;
+}
+.slide img {
+  max-width: 100%;
+  opacity: 0.4;
+}
+.swiper-rtl .swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+  color: #a7a7a7;
+}
+.swiper-rtl .swiper-button-next::after,
+.swiper-rtl .swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: bolder;
+}
+.swiper-slide-active img {
+  opacity: 1 !important;
+}
+.slide_items {
+  display: flex;
+  justify-content: space-around;
+}
