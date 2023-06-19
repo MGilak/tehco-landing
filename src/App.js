@@ -74,13 +74,13 @@ function App() {
   };
 
   // اسلایدر
-  // useEffect(() => {
-  //   const intervalSlider = setInterval(() => {
-  //     incHandler();
+  useEffect(() => {
+    const intervalSlider = setInterval(() => {
+      incHandler();
 
-  //     return clearInterval(intervalSlider);
-  //   }, 7000);
-  // }, [slider]);
+      return clearInterval(intervalSlider);
+    }, 10000);
+  }, [slider]);
 
   return (
     <>
@@ -107,7 +107,9 @@ function App() {
 
         {slider === 0 ? (
           <div className={`main_title_1 ${loadWin && "load"}`}>
-            <h1>ارائه و اجرای برنامه‌ نویسی</h1>
+            <div>
+              <h1>ارائه و اجرای برنامه‌ نویسی</h1>
+            </div>
             <div className="main_title_down">
               <h3>خدمات تولید نرم‌افزار، وب‌افزار</h3>
               <h3>ارائه خدمات تولید و پشتیبانی نرم‌افزار و طراحی سایت</h3>

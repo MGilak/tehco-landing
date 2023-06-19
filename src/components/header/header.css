@@ -34,6 +34,7 @@
   border-radius: 5px;
   background-color: #ebbd13;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 .customer a:hover {
   color: #fff;
@@ -332,6 +333,39 @@
 .second {
   display: none;
 }
+.humburger_icon {
+  display: none;
+}
+.shadow {
+  width: 100vw;
+  height: 1000vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+}
+
+.close_icon {
+  position: absolute;
+  top: 0;
+  z-index: 191;
+  left: 42%;
+  cursor: pointer;
+  display: none;
+}
+.close_icon svg {
+  font-size: 58px;
+  transition: all 0.3s ease-in;
+}
+.close_icon svg:hover {
+  animation-name: closeAnim;
+  animation-delay: 0.4s;
+  transform: rotate(180deg);
+}
 
 /****************************************************/
 /* responsive */
@@ -399,6 +433,31 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .close_icon {
+    display: block;
+  }
+  .shadow.active {
+    display: block;
+  }
+  .close_icon {
+    left: 38%;
+  }
+  .humburger_icon {
+    display: flex;
+    background-color: #ebbd13;
+    padding: 13px;
+    border-radius: 5px;
+    z-index: 99;
+    cursor: pointer;
+  }
+  .humburger_icon svg {
+    color: #fff;
+    font-size: 25px;
+  }
+  .customer,
+  .headset {
+    display: none;
+  }
   .menu .search_menu,
   .menu .line {
     display: none;
@@ -407,13 +466,13 @@
     display: flex !important;
   }
   .menu_header {
-    /* &&&&&&&&&&&&&&&&&&&&&&&&& */
-    display: none;
+    display: flex;
     position: absolute;
     right: 0;
     top: 0;
     left: unset;
     color: #fff;
+    box-shadow: none;
   }
   .menu_header.fixed .menu,
   .menu_header .menu {
@@ -426,7 +485,15 @@
     padding: 0 21px;
     bottom: 0;
     overflow-y: auto;
+    transform: translateX(400px) !important;
+    transition: all 0.3s ease-in-out;
+    z-index: 190;
   }
+  .menu_header.fixed .menu.active,
+  .menu_header .menu.active {
+    transform: translateX(0) !important;
+  }
+
   .menu_header.fixed .menu::-webkit-scrollbar,
   .menu_header .menu::-webkit-scrollbar {
     visibility: hidden;
@@ -493,13 +560,17 @@
     background-color: #0099cc;
     align-items: center;
     transition: all 0.2s ease;
-  }
-  .main_menu > li > .sub_menu.active {
     height: 0;
     padding: 0;
     overflow: hidden;
     transition: all 0.2s ease;
   }
+  /* .main_menu > li > .sub_menu.deactive {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  } */
   .main_menu > li > .sub_menu li {
     display: flex;
     justify-content: center;
@@ -532,7 +603,13 @@
     display: flex;
     background-color: #0099cc;
   }
+  .sub_menu > li > a {
+    text-align: center;
+  }
   .sub_menu > li > svg {
     display: none;
+  }
+  .menu_left {
+    justify-content: center;
   }
 }

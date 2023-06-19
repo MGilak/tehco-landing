@@ -50,6 +50,20 @@ header {
   padding: 14px 58px;
   border-radius: 5px;
 }
+.main_title_1.load div:first-child {
+  animation-name: rot;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+}
+@keyframes rot {
+  0% {
+    rotate: x -90deg;
+  }
+  100% {
+    rotate: x 0deg;
+  }
+}
+
 .main_title_down {
   border-radius: 0 0 5px 5px;
   background-color: #fff;
@@ -433,7 +447,65 @@ header {
 
 /****************************************************/
 /* responsive */
+@media only screen and (max-width: 1280px) {
+  .main_title_1 h1 {
+    font-size: 47px;
+  }
+  .main_title_1 .main_title_down h3 {
+    font-size: 17px;
+  }
+}
+@media only screen and (max-width: 1187px) {
+  .main_title_1 h1 {
+    font-size: 42px;
+  }
+  .main_title_1 .main_title_down h3 {
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 1101px) {
+  .announce .container > div {
+    top: 53%;
+    left: 9%;
+  }
+  .main_title_1 h1 {
+    font-size: 40px;
+  }
+  .main_title_1 .main_title_down h3 {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 972px) {
+  .main_title_1 h1 {
+    font-size: 37px;
+  }
+  .main_title_1 .main_title_down {
+    padding: 10px 30px;
+  }
+  .main_title_1 .main_title_down h3 {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 847px) {
+  .main_title_1 {
+    left: 16%;
+  }
+  .main_title_1 h1 {
+    font-size: 30px;
+    padding: 14px 45px;
+  }
+  .main_title_1 .main_title_down {
+    padding: 10px 20px;
+  }
+  .main_title_1 .main_title_down h3 {
+    font-size: 13px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
+  header {
+    top: 0;
+  }
   .service_content {
     flex-wrap: wrap;
   }
@@ -444,11 +516,25 @@ header {
   .service_content_info .title {
     text-align: center;
   }
+  .main_title_1 h1 {
+    font-size: 26px;
+  }
+  .main_title_1 .main_title_down h3 {
+    font-size: 13px;
+  }
 }
-
-@media only screen and (max-width: 1101px) {
-  .announce .container > div {
-    top: 53%;
-    left: 9%;
+@media only screen and (max-width: 500px) {
+  .main_title_1 {
+    left: 10%;
+  }
+  .main_title_1 h1 {
+    font-size: 24px;
+    padding: 8px 22px;
+  }
+  .main_title_1 .main_title_down {
+    padding: 10px 18px;
+  }
+  .main_title_1 h3:first-child {
+    margin-bottom: 5px;
   }
 }

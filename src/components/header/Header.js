@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeadset, faL, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { IoIosClose } from "react-icons/io";
 import {
   FaAngleDoubleDown,
   FaAngleDoubleUp,
   FaAngleDoubleLeft,
+  FaBars,
   FaAngleDown,
 } from "react-icons/fa";
 import {
@@ -19,7 +21,18 @@ import {
 const Header = () => {
   const [menuSticky, setMenuSticky] = useState(false);
   const [navPosition, setNavPosition] = useState();
-  const [openSub, setOpenSub] = useState(true);
+  const [openSub1, setOpenSub1] = useState(true);
+  const [openSub, setOpenSub] = useState({
+    sub1: true,
+    sub2: true,
+    sub2_1: true,
+    sub2_2: true,
+    sub3: true,
+    sub3_1: true,
+    sub3_2: true,
+    sub4: true,
+  });
+  const [showMenu, setShowMenu] = useState(false);
 
   const menuRef = useRef();
   const navRef = useRef();
@@ -51,12 +64,34 @@ const Header = () => {
     };
   }, []);
 
-  const openSubMenu = () => {
-    setOpenSub(!openSub);
+  // const openSubMenu = () => {
+  //   setOpenSub(!openSub);
+  // };
+
+  const showSideMenu = () => {
+    setShowMenu(true);
+    console.log(showMenu);
   };
+
+  // close sidebar on click outside
+  const sidebarRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      setShowMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div>
+      <div className={`shadow ${showMenu && "active"}`}></div>
       <div className="wide_header">
         <div className="header_logo">
           <a href="#">
@@ -77,6 +112,9 @@ const Header = () => {
                 <strong>ایمیل:</strong> info@tehco.ir
               </div>
             </div>
+            <div onClick={showSideMenu} className="humburger_icon">
+              <FaBars />
+            </div>
           </div>
 
           <div className="customer">
@@ -92,7 +130,10 @@ const Header = () => {
         ref={menuRef}
         className={`menu_header center ${menuSticky && "fixed"}`}
       >
-        <div className="menu">
+        <div onClick={() => setShowMenu(false)} className="close_icon">
+          <IoIosClose />
+        </div>
+        <div ref={sidebarRef} className={`menu ${showMenu && "active"}`}>
           <nav ref={navRef}>
             <ul className="main_menu">
               <li>
@@ -100,14 +141,14 @@ const Header = () => {
               </li>
 
               {/********محصولات*******/}
-              <li onClick={openSubMenu}>
+              <li>
                 <a href="#">
                   <span>محصولات</span>
                   <FaAngleDoubleDown className="first" />
                   <FaAngleDown className="second" />
                 </a>
                 {/*منوی محصولات*/}
-                <ul class={`sub_menu ${openSub && "active"}`}>
+                <ul class="sub_menu">
                   <li>
                     <a href="#">
                       <span>اتوماسیون مدارس</span>
@@ -138,7 +179,7 @@ const Header = () => {
               {/********پایان محصولات*********/}
 
               {/********خدمات*********/}
-              <li onClick={openSubMenu}>
+              <li>
                 <a href="#">
                   <span>خدمات</span>
                   <FaAngleDoubleDown className="first" />
@@ -218,7 +259,9 @@ const Header = () => {
               {/********پایان خدمات*********/}
 
               {/********نمونه کار*********/}
-              <li onClick={openSubMenu}>
+              <li
+                onClick={() => (prev) => setOpenSub({ ...prev, sub3: false })}
+              >
                 <a href="#">
                   <span>نمونه کار</span>
                   <FaAngleDoubleDown className="first" />
@@ -302,7 +345,9 @@ const Header = () => {
               {/********پایان نمونه کار*********/}
 
               {/********پشتیبانی*********/}
-              <li onClick={openSubMenu}>
+              <li
+                onClick={() => (prev) => setOpenSub({ ...prev, sub4: false })}
+              >
                 <a href="#">
                   <span>پشتیبانی</span>
                   <FaAngleDoubleDown className="first" />
