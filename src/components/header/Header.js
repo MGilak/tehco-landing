@@ -2,12 +2,25 @@ import React, { useEffect, useRef, useState } from "react";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeadset, faL, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FaAngleDoubleDown, FaAngleDoubleLeft } from "react-icons/fa";
-import { BsInstagram, BsLinkedin, BsTwitter, BsSearch } from "react-icons/bs";
+import {
+  FaAngleDoubleDown,
+  FaAngleDoubleUp,
+  FaAngleDoubleLeft,
+  FaAngleDown,
+} from "react-icons/fa";
+import {
+  BsInstagram,
+  BsLinkedin,
+  BsTwitter,
+  BsSearch,
+  BsThreeDots,
+} from "react-icons/bs";
 
 const Header = () => {
   const [menuSticky, setMenuSticky] = useState(false);
   const [navPosition, setNavPosition] = useState();
+  const [openSub, setOpenSub] = useState(true);
+
   const menuRef = useRef();
   const navRef = useRef();
 
@@ -38,11 +51,15 @@ const Header = () => {
     };
   }, []);
 
+  const openSubMenu = () => {
+    setOpenSub(!openSub);
+  };
+
   return (
     <div>
       <div className="wide_header">
         <div className="header_logo">
-          <a href="/">
+          <a href="#">
             <img src="./images/logo-logistic.png" alt="" />
           </a>
         </div>
@@ -63,7 +80,7 @@ const Header = () => {
           </div>
 
           <div className="customer">
-            <a href="/">
+            <a href="#">
               <FontAwesomeIcon className="plus" icon={faPlus} />
               <span>پرتال مشتریان</span>
             </a>
@@ -79,40 +96,40 @@ const Header = () => {
           <nav ref={navRef}>
             <ul className="main_menu">
               <li>
-                <a href="/">خانه</a>
+                <a href="#">خانه</a>
               </li>
 
               {/********محصولات*******/}
-              <li>
-                <a href="/">
+              <li onClick={openSubMenu}>
+                <a href="#">
                   <span>محصولات</span>
-                  <FaAngleDoubleDown />
+                  <FaAngleDoubleDown className="first" />
+                  <FaAngleDown className="second" />
                 </a>
-
                 {/*منوی محصولات*/}
-                <ul class="sub_menu">
+                <ul class={`sub_menu ${openSub && "active"}`}>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>اتوماسیون مدارس</span>
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>سیستم مدیریت محتوا و پرتال ساز پارسیسم</span>
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>سامانه مدیریت جلسات و شفافیت آرا</span>
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>سامانه مدیریت خدمات شهری</span>
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>سیستم آرشیو الکترونیک</span>
                     </a>
                   </li>
@@ -121,76 +138,78 @@ const Header = () => {
               {/********پایان محصولات*********/}
 
               {/********خدمات*********/}
-              <li>
-                <a href="/">
+              <li onClick={openSubMenu}>
+                <a href="#">
                   <span>خدمات</span>
-                  <FaAngleDoubleDown />
+                  <FaAngleDoubleDown className="first" />
+                  <FaAngleDown className="second" />
                 </a>
                 {/*منوی خدمات*/}
                 <ul class="sub_menu">
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>طراحی وبسایت</span>
+                      <FaAngleDown className="second" />
                     </a>
                     <FaAngleDoubleLeft />
                     <ul class="sub_menu sub1_menu2">
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>پشتیبانی وب افزار</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>استارتاپ و کسب و کار</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>شخصی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>فروشگاهی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>سازمانی و اداری</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>شرکتی و خصوصی</span>
                         </a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="/" class="sf-with-ul">
+                    <a href="#" class="sf-with-ul">
                       <span>موبایل و اپلیکیشن</span>
                     </a>
                     <FaAngleDoubleLeft />
                     <ul class="sub_menu sub2_menu2">
                       <li>
-                        <a href="/" data-title="راهکارهای اداری و سازمانی">
+                        <a href="#" data-title="راهکارهای اداری و سازمانی">
                           <span>راهکارهای اداری و سازمانی</span>
                         </a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>پنل پیامک</span>
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>دیجیتال مارکتینگ</span>
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>سامانه مدیریت کسب وکار</span>
                     </a>
                   </li>
@@ -199,81 +218,82 @@ const Header = () => {
               {/********پایان خدمات*********/}
 
               {/********نمونه کار*********/}
-              <li>
-                <a href="/">
+              <li onClick={openSubMenu}>
+                <a href="#">
                   <span>نمونه کار</span>
-                  <FaAngleDoubleDown />
+                  <FaAngleDoubleDown className="first" />
+                  <FaAngleDown className="second" />
                 </a>
                 {/*منوی نمونه کار*/}
                 <ul class="sub_menu">
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>وب سایت</span>
                     </a>
                     <FaAngleDoubleLeft />
                     <ul class="sub_menu sub1_menu2">
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>شخصی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>فروشگاهی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>سازمانی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>خدماتی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>شرکتی</span>
                         </a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>موبایل اپلیکیشن</span>
                     </a>
                     <FaAngleDoubleLeft />
                     <ul class="sub_menu sub2_menu2">
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>شخصی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>سازمانی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>استارتاپی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>خدماتی</span>
                         </a>
                       </li>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <span>فروشگاهی</span>
                         </a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>گرافیک</span>
                     </a>
                   </li>
@@ -282,20 +302,20 @@ const Header = () => {
               {/********پایان نمونه کار*********/}
 
               {/********پشتیبانی*********/}
-              <li>
-                <a href="/">
+              <li onClick={openSubMenu}>
+                <a href="#">
                   <span>پشتیبانی</span>
-                  <FaAngleDoubleDown />
+                  <FaAngleDoubleDown className="first" />
                 </a>
                 {/*منوی نمونه کار*/}
                 <ul class="sub_menu">
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>سامانه مشتریان</span>
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <span>پشتیبانی وب افزار</span>
                     </a>
                   </li>
@@ -303,13 +323,213 @@ const Header = () => {
               </li>
               {/********پایان پشتیبانی*******/}
               <li>
-                <a href="/">وبلاگ</a>
+                <a href="#">وبلاگ</a>
               </li>
               <li>
-                <a href="/">درباره ما</a>
+                <a href="#">درباره ما</a>
               </li>
               <li>
-                <a href="/">تماس با ما</a>
+                <a href="#">تماس با ما</a>
+              </li>
+
+              <li className="extra_menu">
+                <a href="#">
+                  <BsThreeDots />
+                </a>
+                {/********Extra Menu********/}
+                <ul className=" sub_menu">
+                  {/********خدمات*********/}
+                  <li className="one">
+                    <a href="#">
+                      <span>خدمات</span>
+                    </a>
+                    <FaAngleDoubleUp />
+                    {/*منوی خدمات*/}
+                    <ul class="sub_menu sub1_menu2">
+                      <li>
+                        <a href="#">
+                          <span>طراحی وبسایت</span>
+                        </a>
+                        <FaAngleDoubleLeft />
+                        <ul class="sub_menu sub1_menu2">
+                          <li>
+                            <a href="#">
+                              <span>پشتیبانی وب افزار</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>استارتاپ و کسب و کار</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>شخصی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>فروشگاهی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>سازمانی و اداری</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>شرکتی و خصوصی</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#" class="sf-with-ul">
+                          <span>موبایل و اپلیکیشن</span>
+                        </a>
+                        <FaAngleDoubleLeft />
+                        <ul class="sub_menu sub2_menu2">
+                          <li>
+                            <a href="#" data-title="راهکارهای اداری و سازمانی">
+                              <span>راهکارهای اداری و سازمانی</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span>پنل پیامک</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span>دیجیتال مارکتینگ</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span>سامانه مدیریت کسب وکار</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  {/********پایان خدمات*********/}
+
+                  {/********نمونه کار*********/}
+                  <li className="two">
+                    <a href="#">
+                      <span>نمونه کار</span>
+                    </a>
+                    <FaAngleDoubleUp />
+                    {/*منوی نمونه کار*/}
+                    <ul class="sub_menu sub1_menu2">
+                      <li>
+                        <a href="#">
+                          <span>وب سایت</span>
+                        </a>
+                        <FaAngleDoubleLeft />
+                        <ul class="sub_menu sub1_menu2">
+                          <li>
+                            <a href="#">
+                              <span>شخصی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>فروشگاهی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>سازمانی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>خدماتی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>شرکتی</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span>موبایل اپلیکیشن</span>
+                        </a>
+                        <FaAngleDoubleLeft />
+                        <ul class="sub_menu sub2_menu2">
+                          <li>
+                            <a href="#">
+                              <span>شخصی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>سازمانی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>استارتاپی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>خدماتی</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span>فروشگاهی</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span>گرافیک</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  {/********پایان نمونه کار*********/}
+
+                  {/********پشتیبانی*********/}
+                  <li className="three">
+                    <a href="#">
+                      <span>پشتیبانی</span>
+                    </a>
+                    <FaAngleDoubleUp />
+                    {/*منوی نمونه کار*/}
+                    <ul class="sub_menu sub1_menu2">
+                      <li>
+                        <a href="#">
+                          <span>سامانه مشتریان</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span>پشتیبانی وب افزار</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  {/********پایان پشتیبانی*******/}
+                  <li className="four">
+                    <a href="#">وبلاگ</a>
+                  </li>
+                  <li className="five">
+                    <a href="#">درباره ما</a>
+                  </li>
+                  <li className="six">
+                    <a href="#">تماس با ما</a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>
@@ -317,21 +537,21 @@ const Header = () => {
           <div className="menu_left">
             <div className="social_menu">
               <div className="aparat">
-                <a className="center" href="/">
+                <a className="center" href="#">
                   <BsTwitter />
                 </a>
                 <span>توییتر</span>
               </div>
 
               <div className="linkedin">
-                <a className="center" href="/">
+                <a className="center" href="#">
                   <BsLinkedin />
                 </a>
                 <span>لینکدین</span>
               </div>
 
               <div className="insta">
-                <a className="center" href="/">
+                <a className="center" href="#">
                   <BsInstagram />
                 </a>
                 <span>اینستاگرام</span>

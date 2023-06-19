@@ -187,10 +187,12 @@ header {
 }
 .services ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 20px;
 }
 .services ul li {
-  width: calc(100% / 7 - 10px);
+  width: 150px;
   text-align: center;
   font-weight: 600;
   color: #444444;
@@ -252,7 +254,8 @@ header {
 .service_content_info .button {
   margin-top: 50px;
 }
-.service_content_image {
+.service_content_image img {
+  width: 100%;
 }
 .main_button {
   border-radius: 5px;
@@ -425,5 +428,27 @@ header {
   }
   100% {
     opacity: 1;
+  }
+}
+
+/****************************************************/
+/* responsive */
+@media only screen and (max-width: 768px) {
+  .service_content {
+    flex-wrap: wrap;
+  }
+  .service_content_image,
+  .service_content_info {
+    max-width: 100%;
+  }
+  .service_content_info .title {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 1101px) {
+  .announce .container > div {
+    top: 53%;
+    left: 9%;
   }
 }
